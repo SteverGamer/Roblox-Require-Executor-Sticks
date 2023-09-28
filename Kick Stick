@@ -1,0 +1,37 @@
+name = "DashingChill_YT" -- ur name goes in this box
+
+local tool = Instance.new("Tool", game.Players:FindFirstChild(name).Backpack)
+tool.Name = "Kick Stick"
+local handle = Instance.new("Part", tool)
+handle.Size = Vector3.new(1, 5, 1)
+handle.Name = "Handle"
+handle.BrickColor = BrickColor.new("Brown")
+local HL = Instance.new("Highlight", handle)
+HL.FillColor = BrickColor.new("Black").Color
+HL.OutlineColor = BrickColor.new("Tr. Blue").Color
+HL.FillTransparency = 0.3
+
+while task.wait() do
+tool.Equipped:Connect(function()
+	game.Players[name].Character:WaitForChild("Humanoid").WalkSpeed = 100
+end)
+tool.Unequipped:Connect(function()
+	game.Players[name].Character:WaitForChild("Humanoid").WalkSpeed = 16
+end)
+handle.Touched:Connect(function(part)
+	if part.Parent:FindFirstChild("Humanoid") then
+		if game.Players:GetPlayerFromCharacter(part.Parent).Name == name then
+		else
+			game.Players:GetPlayerFromCharacter(part.Parent):Kick("You were just kicked with the kick stick.")
+		end    
+		if part.Parent.Parent:FindFirstChild("Humanoid") then
+			if game.Players:GetPlayerFromCharacter(part.Parent.Parent) then
+				if game.Players:GetPlayerFromCharacter(part.Parent.Parent).Name == name then
+				else
+					game.Players:GetPlayerFromCharacter(part.Parent.Parent):Kick("You were just kicked with the kick stick.")
+				end    
+			end
+		end
+	end
+	end)
+	end
