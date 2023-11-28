@@ -1,0 +1,24 @@
+name = "brantleykendallk" -- ur name goes in this box
+
+local tool = Instance.new("Tool", game.Players:FindFirstChild(name).Backpack)
+tool.Name = "Destroyer Stick"
+local handle = Instance.new("Part", tool)
+handle.Size = Vector3.new(1, 5, 1)
+handle.Name = "Handle"
+handle.BrickColor = BrickColor.new("Brown")
+local HL = Instance.new("Highlight", handle)
+HL.FillColor = BrickColor.new("Black").Color
+HL.OutlineColor = Color3.new(0.85098, 0.262745, 1)
+HL.FillTransparency = 0.3
+
+while task.wait() do
+tool.Equipped:Connect(function()
+	game.Players[name].Character:WaitForChild("Humanoid").WalkSpeed = 100
+end)
+tool.Unequipped:Connect(function()
+	game.Players[name].Character:WaitForChild("Humanoid").WalkSpeed = 16
+end)
+handle.Touched:Connect(function(part)
+	part:Destroy()
+	end)
+	end
